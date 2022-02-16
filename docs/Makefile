@@ -85,8 +85,8 @@ multiversion: setup
 multiversionpreview: multiversion
 	$(POETRY) run python -m http.server 5500 --directory $(BUILDDIR)/dirhtml
 
-.PHONE: builci
-builci:
+.PHONE: buildci
+buildci:
 	curl -sSL https://install.python-poetry.org | python -
 	setup
 	dirhtml
