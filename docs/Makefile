@@ -87,6 +87,6 @@ multiversionpreview: multiversion
 
 .PHONE: buildci
 buildci:
-	curl -sSL https://install.python-poetry.org | python -
+	pip install --user poetry
 	setup
 	dirhtml
