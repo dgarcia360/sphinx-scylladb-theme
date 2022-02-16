@@ -90,4 +90,4 @@ buildci:
 	pip install poetry
 	poetry install
 	poetry update
-	$(SPHINXBUILD) -b dirhtml $(TESTSPHINXOPTS) $(BUILDDIR)/dirhtml
+	poetry run sphinx-build -b dirhtml $(TESTSPHINXOPTS) $(BUILDDIR)/dirhtml
