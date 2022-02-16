@@ -14,7 +14,7 @@
   :image: /_static/img/mascots/scylla-docs.svg
 
 
-  The documentation toolchain for Scylla projects.
+  Test Netlify.
 
 .. raw:: html
 
