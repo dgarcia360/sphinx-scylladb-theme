@@ -87,6 +87,6 @@ multiversionpreview: multiversion
 
 .PHONE: buildci
 buildci:
-	pip install --user poetry
+	pip install poetry
 	setup
 	dirhtml
