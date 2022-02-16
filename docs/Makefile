@@ -85,7 +85,7 @@ multiversion: setup
 multiversionpreview: multiversion
 	$(POETRY) run python -m http.server 5500 --directory $(BUILDDIR)/dirhtml
 
-.PHONE: buildci
+.PHONY: buildci
 buildci:
 	pip install poetry
 	poetry install
