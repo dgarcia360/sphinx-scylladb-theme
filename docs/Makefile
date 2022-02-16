@@ -88,6 +88,7 @@ multiversionpreview: multiversion
 .PHONE: buildci
 buildci:
 	pip install poetry
+	POETRY = poetry
 	$(POETRY) install
 	$(POETRY) update
 	$(SPHINXBUILD) -b dirhtml $(TESTSPHINXOPTS) $(BUILDDIR)/dirhtml
