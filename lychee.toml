@@ -1,4 +1,0 @@
-base = "docs"
-
-# Exclude URLs from checking (supports regex)
-exclude = []
