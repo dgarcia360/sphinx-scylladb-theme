@@ -43,8 +43,8 @@ To install the workflows:
         project-name/
           ├── .github/
           |   ├── workflows/
-          |   |   ├── docs-pages@vX.yaml
-          |   |   ├── docs-pr@vX.yaml
+          |   |   ├── docs-pages.yaml
+          |   |   ├── docs-pr.yaml
 
 #. If the default branch is not ``master`` or the docs are not under the ``docs`` folder, the workflows to match the project configuration. For example:
 
