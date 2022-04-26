@@ -1,0 +1,1243 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    
+    
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>
+             Markup Guide for Docs Contributors | Scylla Docs 
+        </title>
+        <meta name="description" content="Sphinx Theme for ScyllaDB projects." />
+        <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="../_static/img/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" href="../_static/img/favicon-228x228.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="../_static/img/favicon-228x228.png" />
+        <meta name="msapplication-TileImage" href="../_static/img/favicon-228x228.png" />
+        
+            
+            <link rel="canonical" href="https://sphinx-theme.scylladb.com/stable/contribute/markup-guide.html"/>
+        
+        <link rel="author" href="mailto:info@scylladb.com" />
+
+        
+            
+        <!-- increase expertrec loading priority-->
+        <link rel="dns-prefetch" href="https://cse.expertrec.com">
+
+        <!-- increase font loading priority -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" as="style"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+
+        <!-- async CSS -->
+        <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+
+        <!-- no-JS fallback -->
+        <noscript>
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+        </noscript>
+        
+            
+                <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../_static/css/main.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../_static/sphinx_collapse.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+            
+        
+    
+        
+        
+            
+
+        <script type="text/javascript" id="documentation_options" data-url_root="../"
+            src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/js/runtime.bundle.js"></script>
+        <script type="text/javascript" src="../_static/js/main.bundle.js"></script>
+        
+            
+                <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+            
+        
+            
+        
+            
+                <script src="../_static/underscore.js"></script>
+            
+        
+            
+                <script src="../_static/doctools.js"></script>
+            
+        
+            
+                <script src="../_static/clipboard.min.js"></script>
+            
+        
+            
+                <script src="../_static/copybutton.js"></script>
+            
+        
+            
+                <script src="../_static/tabs.js"></script>
+            
+        
+    
+            <!-- Google Tag Manager -->
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            "gtm.start": new Date().getTime(),
+            event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-T8P2JP");
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Expertrec -->
+<script>
+    var id = "e2077224-9ccf-11e9-a0c9-0242ac130002";
+    var ci_search = document.createElement("script");
+    ci_search.type = "text/javascript";
+    ci_search.async = true;
+    ci_search.src = "https://cse.expertrec.com/api/js/ci_common.js?id=" + id;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(ci_search, s);
+</script>
+<!-- End Expertrec -->
+        
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/b1870adf6a.js" crossorigin="anonymous"></script>
+        <!-- End Font Awesome -->
+    </head>
+
+    <body>
+        
+            <section class="promo-banner">
+    <div class="promo-banner-wrapper">
+        
+        <div class="promo-banner__title">Scylla University Live | Free Virtual Training Event</div>
+        <a class="promo-banner__button button button--reverse" href="#"
+            target="_blank" rel="noopener noreferrer">Learn more</a>
+        <button class="promo-banner__close">
+            <i class="scylla-icon scylla-icon--close"></i>
+        </button>
+    </div>
+</section>
+        
+        <header class="header">
+    <div class="header-logo">
+        <a class="header-logo__img" href="https://scylladb.com/">
+            <img src="../_static/img/logo-docs.svg" alt="Scylla Documentation Logo" />
+        </a>
+        <span class="header-logo__bar"></span>
+        <a class="header-logo__text" href="https://docs.scylladb.com/">
+            Documentation
+        </a>
+    </div>
+    <div class="header-navigation">
+        <ul class="dropdown menu scylla-dropdown scylla-dropdown--header" data-dropdown-menu>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Server
+                    <i class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--about-us"></i>
+                            Scylla Open Source
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--enterprise"></i>Scylla Enterprise
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scylla.docs.scylladb.com/stable/alternator/alternator.html">
+                            <i class="scylla-icon scylla-icon--overview"></i>
+                            Scylla Alternator
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Cloud <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://cloud.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--cloud"></i>Scylla Cloud</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">
+                            <i class="scylla-icon scylla-icon--cloud-docs"></i>Scylla Cloud
+                            Docs</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Tools <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://manager.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--manager"></i>Scylla Manager</a>
+                    </li>
+                    <li>
+                        <a href="https://monitoring.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--monitoring"></i>Scylla
+                            Monitoring Stack</a>
+                    </li>
+                    <li>
+                        <a href="https://operator.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--operator"></i>Scylla Operator
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Drivers <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://docs.scylladb.com/using-scylla/drivers/cql-drivers/">
+                            <i class="scylla-icon scylla-icon--nsql-guides"></i>CQL Drivers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/using-scylla/drivers/dynamo-drivers/">
+                            <i class="scylla-icon scylla-icon--overview"></i>DynamoDB Drivers
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="header-button">
+            <a href="https://www.scylladb.com/download/" class="button">Download</a>
+        </div>
+    </div>
+    <div class="header-search-box">
+        <div class="search-box">
+            <ci-search></ci-search>
+        </div>
+    </div>
+    <div class="side-nav-toggle" data-toggle="side-nav">
+    <div class="side-nav-toggle__button">
+        <img src="../_static/img/menu.svg" alt="Menu" />
+    </div>
+</div>
+</header>
+        <section
+            class="layout  layout--sidebar layout--has-secondary-sidebar ">
+            <div class="content large-order-2">
+                
+                    
+    <div class="admonition caution">
+        <p class="admonition-title">Caution</p>
+        <p>
+            
+                You're viewing documentation for a previous version of Scylla Sphinx Theme.
+            
+            <a href="../../stable/index.html">Switch to the latest stable version.</a>
+        </p>
+    </div>
+
+                
+                
+                    <div class="pre-content">
+                        <div class="breadcrumbs">
+    <span class="bread__item">
+        <a href="../index.html"
+            class="bread__highlight">
+            <i class="fas fa-home"></i> Scylla Sphinx Theme
+        </a>
+    </span>
+    
+        <span class="bread__item">
+            <a href="index.html">
+                Contribute
+            </a>
+        </span>
+    
+    <span class="bread__item bread__item--last">Markup Guide for Docs Contributors</span>
+</div>
+                    </div>
+                
+                <section id="markup-guide-for-docs-contributors">
+<h1>Markup Guide for Docs Contributors<a class="headerlink" href="#markup-guide-for-docs-contributors" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.24: </span>Scylla Sphinx Theme</p>
+</div>
+<p>This guide covers the markup convention used for Scylla Docs. Our official documentation is written in RestructuredText.
+We will also accept content written in Markdown.</p>
+<p>This guide covers the RestructuredText elements.
+If you are not familiar with RestructuredText, refer to <a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">this cheat sheet</a>.
+Keep in mind, that in this cheat sheet there may be directives or elements of the markup we’re not using.</p>
+<p>In general, there are  main components to the markup of any document.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#headings" id="id7">Headings</a></p></li>
+<li><p><a class="reference internal" href="#paragraph-styles" id="id8">Paragraph Styles</a></p>
+<ul>
+<li><p><a class="reference internal" href="#lists" id="id9">Lists</a></p></li>
+<li><p><a class="reference internal" href="#links" id="id10">Links</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#character-styles-in-line-markup" id="id11">Character Styles (in-line Markup)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#substitutions" id="id12">Substitutions</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tables" id="id13">Tables</a></p></li>
+<li><p><a class="reference internal" href="#directives" id="id14">Directives</a></p>
+<ul>
+<li><p><a class="reference internal" href="#admonitions" id="id15">Admonitions</a></p></li>
+<li><p><a class="reference internal" href="#code-blocks" id="id16">Code Blocks</a></p></li>
+<li><p><a class="reference internal" href="#images" id="id17">Images</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id18">Includes</a></p></li>
+<li><p><a class="reference internal" href="#tabbed-content" id="id19">Tabbed Content</a></p></li>
+<li><p><a class="reference internal" href="#metadata" id="id20">Metadata</a></p></li>
+<li><p><a class="reference internal" href="#versions" id="id21">Versions</a></p></li>
+<li><p><a class="reference internal" href="#glossary-and-abbreviations" id="id22">Glossary and Abbreviations</a></p></li>
+<li><p><a class="reference internal" href="#toc-and-mini-toc" id="id23">TOC and Mini-TOC</a></p></li>
+<li><p><a class="reference internal" href="#panel-box-and-topic-box" id="id24">Panel Box and Topic Box</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="headings">
+<h2><a class="toc-backref" href="#id7">Headings</a><a class="headerlink" href="#headings" title="Permalink to this headline">¶</a></h2>
+<p>While Sphinx supports many layers of headings, at Scylla we try to keep the hierarchy limited to 4, excluding the title.
+If you have the need for a H4, chances are that you need to re-arrange the content.
+Watch the length of your text vs the markup. It must be at least as long as the text.
+It can be longer, but shorter will produce an error.
+Also, if your markup has a line above and below both lines must be the same length.</p>
+<p>Use the following convention for headings:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Markup for Headings</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Heading</p></th>
+<th class="head"><p>Markup</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Page Title</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">=========</span>
+<span class="gh">Title</span>
+<span class="gh">=========</span>
+</pre></div>
+</div>
+</td>
+<td><p>Has an equal sign above and below the text. Use for the title of the page. It should be used only once per page</p></td>
+</tr>
+<tr class="row-odd"><td><p>H1</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Heading 1</span>
+<span class="gh">---------</span>
+</pre></div>
+</div>
+</td>
+<td><p>Has  a dash below the text. Use for the first level heading.</p></td>
+</tr>
+<tr class="row-even"><td><p>H2</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Heading 2</span>
+<span class="gh">=========</span>
+</pre></div>
+</div>
+</td>
+<td><p>Has an equal sign below the text. Use for the second level heading.</p></td>
+</tr>
+<tr class="row-odd"><td><p>H3</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Heading 3</span>
+<span class="gh">.........</span>
+</pre></div>
+</div>
+</td>
+<td><p>Has dots below the text. Use for a third level heading.</p></td>
+</tr>
+<tr class="row-even"><td><p>H4</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Heading 4</span>
+<span class="gh">^^^^^^^^^</span>
+</pre></div>
+</div>
+</td>
+<td><p>Has carats below the text. Use for a fourth level heading. If you need more levels, re-arrange the text.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="paragraph-styles">
+<h2><a class="toc-backref" href="#id8">Paragraph Styles</a><a class="headerlink" href="#paragraph-styles" title="Permalink to this headline">¶</a></h2>
+<p>A paragraph style is markup which applies to an entire paragraph.
+In RestructuredText, there is no need to markup body text.
+Any text which is not marked up will be treated as body text.</p>
+<section id="lists">
+<h3><a class="toc-backref" href="#id9">Lists</a><a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<p>There are two kinds of lists, ordered and unordered.
+Remember to insert a blank line before and after the lists.</p>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">Markup for Lists</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>List type</p></th>
+<th class="head"><p>Markup</p></th>
+<th class="head"><p>Renders as</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ordered List</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">#.</span> First Item
+<span class="m">#.</span> Second Item
+
+   a. Sub Item
+   <span class="m">#.</span> Sub Item
+
+<span class="m">#.</span> Third Item
+</pre></div>
+</div>
+</td>
+<td><ol class="arabic simple">
+<li><p>First Item</p></li>
+<li><p>Second Item</p>
+<ol class="loweralpha simple">
+<li><p>Sub Item</p></li>
+<li><p>Sub Item</p></li>
+</ol>
+</li>
+<li><p>Third Item</p></li>
+</ol>
+</td>
+<td><p>Use this markup for procedures and in any place where oder matters. Use number sign for the number. When the page is generated it is numbered automatically. A blank line is required at the end of a list.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unordered List</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">*</span> First Item
+<span class="m">*</span> Second Item
+
+  <span class="m">*</span> Sub Item
+  <span class="m">*</span> Sub Item
+
+<span class="m">*</span> Third Item
+</pre></div>
+</div>
+</td>
+<td><ul class="simple">
+<li><p>First Item</p></li>
+<li><p>Second Item</p>
+<ul>
+<li><p>Sub Item</p></li>
+<li><p>Sub Item</p></li>
+</ul>
+</li>
+<li><p>Third Item</p></li>
+</ul>
+</td>
+<td><p>Use for any list where order doesn’t matter. Use an asterisk for the bullet. When the page is generated it is bulleted automatically. A blank line is required at the end of a list.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="links">
+<h3><a class="toc-backref" href="#id10">Links</a><a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>There are a few links you can use with different purposes.</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">Markup for Links</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Link type</p></th>
+<th class="head"><p>Markup</p></th>
+<th class="head"><p>Renders as</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>External Link</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="s">`External Link </span><span class="si">&lt;https://docs.scylladb.com/some-doc&gt;</span><span class="s">`_</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference external" href="https://docs.scylladb.com/some-doc">External Link</a></p></td>
+<td><p>Use this markup to create a link to another site or project. When rendered it has an arrow pointing out icon. It opens the content in a new tab.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Internal Cross-reference</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:ref:</span><span class="nv">`Internal Link &lt;here&gt;`</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference internal" href="#here"><span class="std std-ref">Internal Link</span></a></p></td>
+<td><p>This is an internal cross reference. It requires a bookmark. Content opens in the same tab.</p></td>
+</tr>
+<tr class="row-even"><td><p>Internal Cross-reference Bookmark</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_here:</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+<td id="here"><p>This is an internal cross reference bookmark. It requires an internal cross-reference anchor (above). It does not render, but serves as a point to link to.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Internal Doc Reference</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:doc:</span><span class="nv">`Internal Doc &lt;../index&gt;`</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference internal" href="../index.html"><span class="doc">Internal Doc</span></a></p></td>
+<td><p>This is an internal doc cross reference. it looks for a file. A full path is required.</p></td>
+</tr>
+<tr class="row-even"><td><p>Download Link</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:download:</span><span class="nv">`download &lt;index.rst&gt;`</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference download internal" download="" href="../_downloads/4053beaf8073f2f0e039101bf7674639/index.rst"><code class="xref download docutils literal notranslate"><span class="pre">download</span></code></a></p></td>
+<td><p>This opens a download window. It is used to help users download software or files.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="character-styles-in-line-markup">
+<h2><a class="toc-backref" href="#id11">Character Styles (in-line Markup)</a><a class="headerlink" href="#character-styles-in-line-markup" title="Permalink to this headline">¶</a></h2>
+<p>The following markup is used within a line of text.</p>
+<ul class="simple">
+<li><p>Note that you <strong>cannot</strong> mix inline markup types together.</p></li>
+<li><p>Use only one type of markup text at a time.</p></li>
+<li><p>Use a space before any markup <strong>and</strong> after the text that follows.</p></li>
+</ul>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">In-line Markup</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Markup</p></th>
+<th class="head"><p>Renders as</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bold</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gs">**Bold Text**</span>
+</pre></div>
+</div>
+</td>
+<td><p><strong>Bold Text</strong></p></td>
+<td><p>Use this markup to create boldface text. Note that there are no spaces next to the asterisks.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Italics</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="ge">*Italics*</span>
+</pre></div>
+</div>
+</td>
+<td><p><em>Italics</em></p></td>
+<td><p>Use this markup to create italic text. Note that there are no spaces next to the asterisks.</p></td>
+</tr>
+<tr class="row-even"><td><p>Code</p></td>
+<td><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="s">``command line text``</span>
+</pre></div>
+</div>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">line</span> <span class="pre">text</span></code></p></td>
+<td><p>Use this markup to create command line text. Note that there are two tick marks before and after the command and no spaces next to the tick marks.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="substitutions">
+<h3><a class="toc-backref" href="#id12">Substitutions</a><a class="headerlink" href="#substitutions" title="Permalink to this headline">¶</a></h3>
+<p>Substitutions are variables. They are declared in any document and defined in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file, <code class="docutils literal notranslate"><span class="pre">rst_prolog</span></code> setting.
+Do not use substitutions in headings. The reason is the text that replaces the variable may be longer than the line that is over or below the text and this will produce an error.
+Refrain from making up substitutions without discussing it with the doc team first.</p>
+<p>Currently, we are using the following substitutions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">|v|</span></code> for <span class="raw-html"><i class="inline-icon fa fa-check" aria-hidden="true"></i></span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|x|</span></code> for <span class="raw-html"><i class="inline-icon fa fa-times" aria-hidden="true"></i></span></p></li>
+</ul>
+</section>
+</section>
+<section id="tables">
+<h2><a class="toc-backref" href="#id13">Tables</a><a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<p>We use the List Table directive for tables.
+If possible give your table a name as this helps with SEO and screen readers for Accessibility.
+In the width declaration, determine the number of columns and the width for each.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">list-table</span><span class="p">::</span> Table Name
+   <span class="nc">:widths:</span> 33 33 33
+   <span class="nc">:header-rows:</span> 1
+
+   <span class="m">*</span> - header name
+     <span class="m">-</span> header name
+     <span class="m">-</span> header name
+   <span class="m">*</span> - body text
+     <span class="m">-</span> body text
+     <span class="m">-</span> body text
+</pre></div>
+</div>
+<p>Renders as</p>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-text">Table Name</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>header name</p></th>
+<th class="head"><p>header name</p></th>
+<th class="head"><p>header name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>body text</p></td>
+<td><p>body text</p></td>
+<td><p>body text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="directives">
+<h2><a class="toc-backref" href="#id14">Directives</a><a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<p>At Scylla, we use the following directives. Some directives are custom built for Scylla.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#admonitions">Admonitions</a></p></li>
+<li><p><a class="reference internal" href="#codeblocks"><span class="std std-ref">Code Blocks</span></a></p></li>
+<li><p><a class="reference internal" href="#images">Images</a></p></li>
+<li><p><a class="reference internal" href="#includes">Includes</a></p></li>
+<li><p><a class="reference internal" href="#tabbedcontent"><span class="std std-ref">Tabbed Content</span></a></p></li>
+<li><p><a class="reference internal" href="#metadata">Metadata</a></p></li>
+<li><p><a class="reference internal" href="#versions">Versions</a></p></li>
+<li><p><a class="reference internal" href="#abbreviations"><span class="std std-ref">Glossary and Abbreviations</span></a></p></li>
+<li><p><a class="reference internal" href="#toc-mini"><span class="std std-ref">TOC and Mini-TOC</span></a></p></li>
+<li><p><a class="reference internal" href="#panelbox"><span class="std std-ref">Panel Box and Topic Box</span></a></p></li>
+</ul>
+<section id="admonitions">
+<h3><a class="toc-backref" href="#id15">Admonitions</a><a class="headerlink" href="#admonitions" title="Permalink to this headline">¶</a></h3>
+<p>At Scylla, we limit the admonitions. Although RestructuredText will allow for more, use the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#note">Note</a></p></li>
+<li><p><a class="reference internal" href="#caution">Caution</a></p></li>
+<li><p><a class="reference internal" href="#warning">Warning</a></p></li>
+<li><p><a class="reference internal" href="#tip">Tip</a></p></li>
+</ul>
+<section id="note">
+<h4>Note<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h4>
+<p>Use a note to point out something to the reader. This action does not have any risk.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">note</span><span class="p">::</span> text follows here
+</pre></div>
+</div>
+<p>Renders as:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>text follows here</p>
+</div>
+</section>
+<section id="caution">
+<h4>Caution<a class="headerlink" href="#caution" title="Permalink to this headline">¶</a></h4>
+<p>Use caution if there is any potential risk to data loss or lower performance.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">caution</span><span class="p">::</span> look out
+</pre></div>
+</div>
+<p>Renders as</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>look out</p>
+</div>
+</section>
+<section id="warning">
+<h4>Warning<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h4>
+<p>Use warning if there is any potential risk to total data loss or physical danger.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span> take care
+</pre></div>
+</div>
+<p>Renders as:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>take care</p>
+</div>
+</section>
+<section id="tip">
+<h4>Tip<a class="headerlink" href="#tip" title="Permalink to this headline">¶</a></h4>
+<p>This is a time-saving or performance enhancing option.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">tip</span><span class="p">::</span> here&#39;s a tip
+</pre></div>
+</div>
+<p>Renders as:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>here’s a tip</p>
+</div>
+</section>
+</section>
+<section id="code-blocks">
+<span id="codeblocks"></span><h3><a class="toc-backref" href="#id16">Code Blocks</a><a class="headerlink" href="#code-blocks" title="Permalink to this headline">¶</a></h3>
+<p>Code block directives are for displaying code. By default the code is copyable and includes a copy icon.
+To keep code snippets neat, separate the display from the command.
+This keeps the command copyable without having the screen return inside the command.</p>
+<p>For example using the rst code block before a RestructuredText example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">rst</span></code> when used with the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">tip::</span> <span class="pre">here's</span> <span class="pre">a</span> <span class="pre">tip</span></code> as shown above, renders as:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">tip</span><span class="p">::</span> here&#39;s a tip
+</pre></div>
+</div>
+<p>The code block directive can be changed to a language which is supported by RestructuredText.
+For example, the following code-block is bash. If you add the following code block directive, to the code sample below:</p>
+<p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">bash</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Checks if local url matches the original repository</span>
+<span class="nv">original_repo</span><span class="o">=</span><span class="s1">&#39;scylladb/sphinx-scylladb-theme&#39;</span>
+<span class="nv">origin_repo</span><span class="o">=</span><span class="k">$(</span>git config --get remote.origin.url<span class="k">)</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$origin_repo</span> !<span class="o">=</span> *<span class="nv">$original_repo</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Error: You are tring to publish a new version of the theme&quot;</span><span class="se">\</span>
+         <span class="s2">&quot;from your personal fork.&quot;</span><span class="se">\</span>
+         <span class="s2">&quot;Clone the repository &#39;</span><span class="si">${</span><span class="nv">original_repo</span><span class="si">}</span><span class="s2">&#39; locally,&quot;</span><span class="se">\</span>
+         <span class="s2">&quot;then run &#39;deploy.sh&#39; from the original project.&quot;</span>
+    <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>You see that there is syntax highlighting.</p>
+<p>The key item to remember is that the entire code block needs <strong>three</strong> spaces before any line. The code will automatically be highlighted.
+You can create code-blocks in any of the following <a class="reference external" href="https://pygments.org/languages/">languages</a>. Using <code class="docutils literal notranslate"><span class="pre">none</span></code> is also acceptable. If you use none, there is no syntax highlighting.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+
+# Checks if local url matches the original repository
+original_repo=&#39;scylladb/sphinx-scylladb-theme&#39;
+origin_repo=$(git config --get remote.origin.url)
+if [[ $origin_repo != *$original_repo* ]]; then
+    echo &quot;Error: You are tring to publish a new version of the theme&quot;\
+         &quot;from your personal fork.&quot;\
+         &quot;Clone the repository &#39;${original_repo}&#39; locally,&quot;\
+         &quot;then run &#39;deploy.sh&#39; from the original project.&quot;
+    exit 1
+fi
+</pre></div>
+</div>
+<p>If you are including a large example (an entire file) as a code-block, refer to <a class="reference internal" href="#literalinclude"><span class="std std-ref">Literal Include</span></a>.</p>
+</section>
+<section id="images">
+<h3><a class="toc-backref" href="#id17">Images</a><a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<p>There are two possible directives for images. One is the image directive and the other is the figure directive.
+Refer to <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#images">DocUtils</a> for more options.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. image:: checkmark.png
+    :scale: 50 %
+    :alt: checkmark
+</pre></div>
+</div>
+<p>renders the image</p>
+<a class="reference internal image-reference" href="../_images/checkmark.png"><img alt="checkmark" src="../_images/checkmark.png" style="width: 120.5px; height: 104.5px;" /></a>
+<p>Whereas the Figure directive allows you to use captions</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. figure:: checkmark.png
+   :scale: 50 %
+   :alt: checkmark
+
+This is the caption for the image
+</pre></div>
+</div>
+<p>Renders the image as:</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../_images/checkmark.png"><img alt="checkmark" src="../_images/checkmark.png" style="width: 120.5px; height: 104.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">This is the caption for the image</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="includes">
+<h3><a class="toc-backref" href="#id18">Includes</a><a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h3>
+<p>An include directive allows you to include the entire contents of one restructured text file directly into another.
+This is the easiest way to control content re-use.</p>
+<p>When given an absolute path, the directive takes it as relative to the root of the source directory.
+It is Scylla practice to place global include files in the <em>rst_include</em> directory.</p>
+<p>For example, here are some very commonly used include statements:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. include:: /rst_include/scylla-commands-stop-index.rst
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. include:: /rst_include/scylla-commands-start-index.rst
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. include:: /rst_include/scylla-commands-restart-index.rst
+</pre></div>
+</div>
+<section id="literal-include">
+<span id="literalinclude"></span><h4>Literal Include<a class="headerlink" href="#literal-include" title="Permalink to this headline">¶</a></h4>
+<p>If the file you want to include is <strong>not</strong> RestructuredText, you can use the Literal Include directive. This adds the page cited as a code-block.</p>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. literalinclude:: ../conf.py
+   :lines: 1-10
+</pre></div>
+</div>
+<p>Gets the conf.py file from the parent directory and displays the first 10 lines.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+
+<span class="kn">import</span> <span class="nn">recommonmark</span>
+<span class="kn">from</span> <span class="nn">recommonmark.transform</span> <span class="kn">import</span> <span class="n">AutoStructify</span>
+
+<span class="kn">from</span> <span class="nn">sphinx_scylladb_theme.utils</span> <span class="kn">import</span> <span class="n">multiversion_regex_builder</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tabbed-content">
+<span id="tabbedcontent"></span><h3><a class="toc-backref" href="#id19">Tabbed Content</a><a class="headerlink" href="#tabbed-content" title="Permalink to this headline">¶</a></h3>
+<p>When there are several languages or options available and the reader will use one and keep using that option throughout the procedure, a tabbed content box is the best way to display this informaiton.</p>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. tabs::
+
+   .. group-tab:: CentOS 7, Ubuntu 16.04/18.04, Debian 8/9
+
+      .. code-block:: shell
+
+         sudo systemctl stop scylla-server
+
+   .. group-tab:: Ubuntu 14.04, Debian 7
+
+      .. code-block:: shell
+
+         sudo service scylla-server stop
+
+   .. group-tab:: Docker
+
+      .. code-block:: shell
+
+         docker exec -it some-scylla supervisorctl stop scylla
+
+      (without stopping *some-scylla* container)
+</pre></div>
+</div>
+<p>Renders as:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" name="Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" role="tab" tabindex="0">CentOS 7, Ubuntu 16.04/18.04, Debian 8/9</button><button aria-controls="panel-0-VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" name="VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" role="tab" tabindex="-1">Ubuntu 14.04, Debian 7</button><button aria-controls="panel-0-RG9ja2Vy" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-RG9ja2Vy" name="RG9ja2Vy" role="tab" tabindex="-1">Docker</button></div><div aria-labelledby="tab-0-Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" class="sphinx-tabs-panel group-tab" id="panel-0-Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" name="Q2VudE9TIDcsIFVidW50dSAxNi4wNC8xOC4wNCwgRGViaWFuIDgvOQ==" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop scylla-server
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" name="VWJ1bnR1IDE0LjA0LCBEZWJpYW4gNw==" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo service scylla-server stop
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-RG9ja2Vy" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-RG9ja2Vy" name="RG9ja2Vy" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it some-scylla supervisorctl stop scylla
+</pre></div>
+</div>
+<p>(without stopping <em>some-scylla</em> container)</p>
+</div></div>
+</section>
+<section id="metadata">
+<h3><a class="toc-backref" href="#id20">Metadata</a><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<p>Adds Metadata to your document.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.. meta::
+   :description: The reStructuredText plaintext markup language
+   :keywords: plaintext, markup language
+</pre></div>
+</div>
+<p>This would be converted to the following HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span>
+   <span class="na">content</span><span class="o">=</span><span class="s">&quot;The reStructuredText plaintext markup language&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;plaintext, markup language&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="versions">
+<h3><a class="toc-backref" href="#id21">Versions</a><a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h3>
+<p>This is an inline directive which should be used when introducing or deprecating a feature</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">versionadded</span><span class="p">::</span> version
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">versionchanged</span><span class="p">::</span> version
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">deprecated</span><span class="p">::</span> version
+</pre></div>
+</div>
+<p>When using, these directives a blank line must follow. Until we have separated the content, please use the product name with the version number.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1: </span>Scylla Manager</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2018.1: </span>Scylla Enterprise</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.0: </span>Scylla Open Source</p>
+</div>
+</section>
+<section id="glossary-and-abbreviations">
+<span id="abbreviations"></span><h3><a class="toc-backref" href="#id22">Glossary and Abbreviations</a><a class="headerlink" href="#glossary-and-abbreviations" title="Permalink to this headline">¶</a></h3>
+<p>Using the glossary.rst page you can create a glossary. The terms can be entered in any order and it will create an alphabetical list.
+Terms need to be written with a hanging indent from the definition. Consult the Glossary Template for details.</p>
+<p>To cite a term in a document that is not the glossary use the following convention:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:term:</span><span class="nv">`term &lt;term as written in Glossary&gt;`</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:term:</span><span class="nv">`Size-tiered Compaction Strategy (STCS)&lt;Size-tiered Compaction Strategy&gt;`</span>
+</pre></div>
+</div>
+<p>Abbreviations and acronyms are defined in-line. The initial letters or abbreviation is first followed by the longer form.
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:abbr:</span><span class="nv">`LIFO (last-in, first-out)`</span>.
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:abbr:</span><span class="nv">`Overwrite (Same data cells overwritten many times)`</span>
+</pre></div>
+</div>
+</section>
+<section id="toc-and-mini-toc">
+<span id="toc-mini"></span><h3><a class="toc-backref" href="#id23">TOC and Mini-TOC</a><a class="headerlink" href="#toc-and-mini-toc" title="Permalink to this headline">¶</a></h3>
+<p>These directives create TOCs automatically</p>
+<section id="toc">
+<h4>TOC<a class="headerlink" href="#toc" title="Permalink to this headline">¶</a></h4>
+<p>The <abbr title="Table of Contents">TOC</abbr> is automatically generated in sphinx when you build the site.</p>
+<p>Each index.rst needs to have a toctree directive in order to build the left side nav menu.</p>
+<p>See the template for more details.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+ <span class="nc">:maxdepth:</span> 2
+</pre></div>
+</div>
+</section>
+<section id="mini-toc">
+<h4>Mini-TOC<a class="headerlink" href="#mini-toc" title="Permalink to this headline">¶</a></h4>
+<p>Every topic which has more than one heading in it needs to have a mini-toc.
+The Contents directive creates a mini-TOC using the headings you have in the document.
+You can set the level of headings to include in the TOC. The recommended depth is 2 for H1 and H2.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">contents</span><span class="p">::</span>
+<span class="nc">:depth:</span> 2
+<span class="nc">:local:</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="panel-box-and-topic-box">
+<span id="panelbox"></span><h3><a class="toc-backref" href="#id24">Panel Box and Topic Box</a><a class="headerlink" href="#panel-box-and-topic-box" title="Permalink to this headline">¶</a></h3>
+<section id="panel-box">
+<h4>Panel Box<a class="headerlink" href="#panel-box" title="Permalink to this headline">¶</a></h4>
+<p>This is a custom directive which creates boxes on the index screens. Do not use the panel-box on the root index.rst.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">panel-box</span><span class="p">::</span>
+  <span class="nc">:title:</span> Admin
+  <span class="nc">:id:</span> &quot;getting-started&quot;
+  <span class="nc">:class:</span> my-panel
+</pre></div>
+</div>
+</section>
+<section id="topic-box">
+<h4>Topic Box<a class="headerlink" href="#topic-box" title="Permalink to this headline">¶</a></h4>
+<p>This is a custom directive which creates graphical boxes on root index screens. Do not use the topic-box on the subordinate index.rst files.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">topic-box</span><span class="p">::</span>
+  <span class="nc">:title:</span> Getting Started
+  <span class="nc">:link:</span> /getting-started/
+  <span class="nc">:icon:</span> fa fa-power-off
+  <span class="nc">:icon_color:</span> rgba(95,113,180,1)
+  <span class="nc">:icon_bg:</span> rgba(95,113,180,0.1)
+  <span class="nc">:class:</span> my-box
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+                
+                    <div class="post-content"><div class="content-navigation">
+    <div class="navigation navigation--prev">
+        
+            <a class="navigation__link" href="api/sphinx_scylladb_theme.lexers.html">
+                <button class="navigation__button">
+                    <i class="scylla-icon scylla-icon--chevron-left"></i>
+                </button>
+                <div class="navigation__title">
+                    <span class="colored">PREVIOUS</span> <br />Custom Lexers
+                </div>
+            </a>
+        
+    </div>
+    <div class="navigation navigation--next">
+        
+            <a class="navigation__link" href="../CHANGELOG.html">
+                <div class="navigation__title">
+                    <span class="colored">NEXT</span> <br />Changelog
+                </div>
+                <button class="navigation__button">
+                    <i class="scylla-icon scylla-icon--chevron-right"></i>
+                </button>
+            </a>
+        
+    </div>
+</div></div>
+                
+            </div>
+            <div class="sidebar-left  large-order-1">
+                
+                    
+                        <div id="side-nav" class="side-nav custom-scroll-bar" data-closable data-toggler=".show">
+    <button class="collapsible-button">
+        <i class="scylla-icon scylla-icon--chevron-left"></i>
+    </button>
+    <div class="side-nav-content">
+        <div class="side-nav__search">
+            <div class="search-box">
+                <ci-search></ci-search>
+            </div>
+        </div>
+        <div class="side-nav__versions">
+    <ul class="dropdown menu scylla-dropdown scylla-dropdown--versions" data-dropdown-menu>
+        <li class="scylla-dropdown__item">
+            <a class="scylla-dropdown__title" href="#">
+                
+                    1.0
+                
+                <i class="chevron scylla-icon scylla-icon--chevron-right"></i>
+            </a>
+            <ul class="menu scylla-dropdown__content">
+                
+                    
+                
+                    
+                        <li>
+                            <a href="../../stable/index.html">1.2</a>
+                        </li>
+                    
+                
+                    
+                        <li>
+                            <a href="markup-guide.html">1.0</a>
+                        </li>
+                    
+                
+                
+            </ul>
+        </li>
+    </ul>
+</div>
+        <div class="side-nav__content">
+            <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/toolchain.html">Toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../configuration/index.html">Configuration</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/template.html">Template Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/multiversion.html">Multiversion Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github-pages.html">Deployment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/admonitions.html">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/code-blocks.html">Code Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/headings.html">Headings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/hero-box.html">Hero Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/images.html">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/links.html">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/markdown.html">Markdown Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/panel-box.html">Panel Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/substitutions.html">Substitutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tables.html">Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tabs.html">Tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/topic-box.html">Topic Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/versioning.html">Versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Contribute</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="contribute-docs.html">Contribute to the Documentation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="contribute-theme.html">Contribute to the Sphinx Theme</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api/sphinx_scylladb_theme.html">Reference Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/sphinx_scylladb_theme.extensions.html">Custom Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/sphinx_scylladb_theme.lexers.html">Custom Lexers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Markup Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+        </div>
+    </div>
+</div>
+                    
+                
+            </div>
+            
+                <div class="sidebar-right large-order-3">
+                    <div class="secondary-side-nav custom-scroll-bar">
+    
+    <ul class="contribute">
+        <li class="contribute__item">
+            <a href="https://github.com/scylladb/sphinx-scylladb-theme/issues/new?title=Issue in page Markup Guide for Docs Contributors&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://sphinx-theme.scylladb.com/branch-1.0/contribute/markup-guide%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix"
+                target="_blank">
+                <i class="icon fab fa-github" aria-hidden="true"></i>Create an issue
+            </a>
+        </li>
+        
+            <li class="contribute__item">
+                
+                
+                    
+                        
+                    
+                
+                <a href="https://github.com/scylladb/sphinx-scylladb-theme/edit/branch-1.0/docs/source/contribute/markup-guide.rst"
+                    target="_blank">
+                    <i class="icon fa fa-edit" aria-hidden="true"></i>Edit this page
+                </a>
+            </li>
+        
+    </ul>
+
+    
+        <div class="secondary-side-nav__content">
+            <p class="topic-title">On this page</p>
+            <ul>
+<li><a class="reference internal" href="#">Markup Guide for Docs Contributors</a><ul>
+<li><a class="reference internal" href="#headings">Headings</a></li>
+<li><a class="reference internal" href="#paragraph-styles">Paragraph Styles</a><ul>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#links">Links</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-styles-in-line-markup">Character Styles (in-line Markup)</a><ul>
+<li><a class="reference internal" href="#substitutions">Substitutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tables">Tables</a></li>
+<li><a class="reference internal" href="#directives">Directives</a><ul>
+<li><a class="reference internal" href="#admonitions">Admonitions</a><ul>
+<li><a class="reference internal" href="#note">Note</a></li>
+<li><a class="reference internal" href="#caution">Caution</a></li>
+<li><a class="reference internal" href="#warning">Warning</a></li>
+<li><a class="reference internal" href="#tip">Tip</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-blocks">Code Blocks</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#includes">Includes</a><ul>
+<li><a class="reference internal" href="#literal-include">Literal Include</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tabbed-content">Tabbed Content</a></li>
+<li><a class="reference internal" href="#metadata">Metadata</a></li>
+<li><a class="reference internal" href="#versions">Versions</a></li>
+<li><a class="reference internal" href="#glossary-and-abbreviations">Glossary and Abbreviations</a></li>
+<li><a class="reference internal" href="#toc-and-mini-toc">TOC and Mini-TOC</a><ul>
+<li><a class="reference internal" href="#toc">TOC</a></li>
+<li><a class="reference internal" href="#mini-toc">Mini-TOC</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#panel-box-and-topic-box">Panel Box and Topic Box</a><ul>
+<li><a class="reference internal" href="#panel-box">Panel Box</a></li>
+<li><a class="reference internal" href="#topic-box">Topic Box</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    
+</div>
+                </div>
+            
+        </section>
+
+        <footer class="footer">
+    <div class="footer-group">
+        <div class="footer-top">
+            <a class="footer-logo" href="https://www.scylladb.com">
+                <img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt="Logo" />
+            </a>
+            <div class="footer-links">
+                <a class="footer-links__link" href="https://docs.scylladb.com/">Docs</a>
+                <a class="footer-links__link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+                <a class="footer-links__link" href="https://www.scylladb.com/company/">About Us</a>
+            </div>
+            <div class="footer-actions">
+                <a class="footer-actions__link" href="https://groups.google.com/g/scylladb-users" target="_blank">
+                    <span data-tooltip tabindex="1" title="User mailing list" data-position="bottom">
+                        <img src="../_static/img/icons/icon-mail-list.svg" alt="Mail List Icon" />
+                    </span>
+                </a>
+                <a class="footer-actions__link" href="http://slack.scylladb.com/" target="_blank">
+                    <span data-tooltip tabindex="1" title="User Slack channel" data-position="bottom">
+                        <img src="../_static/img/icons/icon-slack.svg" alt="Slack Icon" />
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            
+                <div class="footer-bottom__copyright">
+                    
+                        
+                            &#169; 2022, ScyllaDB. All rights reserved.
+                        
+                    
+                </div>
+            
+            
+                <div class="footer-bottom__last-updated">
+                    
+                        Last updated on 26 Apr 2022.
+                    
+                </div>
+            
+            <div class="footer-bottom__version">
+                Powered by
+                <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a> &amp;
+                <a href="https://sphinx-theme.scylladb.com/">ScyllaDB Theme 1.2.1</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP" height="0" width="0"
+                style="display: none; visibility: hidden"></iframe>
+        </noscript>
+    </body>
+
+</html>

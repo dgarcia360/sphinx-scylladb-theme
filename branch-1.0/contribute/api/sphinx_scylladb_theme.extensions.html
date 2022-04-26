@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    
+    
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>
+             Custom Extensions | Scylla Docs 
+        </title>
+        <meta name="description" content="Sphinx Theme for ScyllaDB projects." />
+        <link rel="icon" href="../../_static/img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="../../_static/img/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" href="../../_static/img/favicon-228x228.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="../../_static/img/favicon-228x228.png" />
+        <meta name="msapplication-TileImage" href="../../_static/img/favicon-228x228.png" />
+        
+            
+            <link rel="canonical" href="https://sphinx-theme.scylladb.com/stable/contribute/api/sphinx_scylladb_theme.extensions.html"/>
+        
+        <link rel="author" href="mailto:info@scylladb.com" />
+
+        
+            
+        <!-- increase expertrec loading priority-->
+        <link rel="dns-prefetch" href="https://cse.expertrec.com">
+
+        <!-- increase font loading priority -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" as="style"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+
+        <!-- async CSS -->
+        <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+
+        <!-- no-JS fallback -->
+        <noscript>
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" />
+        </noscript>
+        
+            
+                <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../../_static/css/main.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css" />
+            
+        
+            
+                <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+            
+        
+    
+        
+        
+            
+
+        <script type="text/javascript" id="documentation_options" data-url_root="../../"
+            src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/js/runtime.bundle.js"></script>
+        <script type="text/javascript" src="../../_static/js/main.bundle.js"></script>
+        
+            
+                <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+            
+        
+            
+        
+            
+                <script src="../../_static/underscore.js"></script>
+            
+        
+            
+                <script src="../../_static/doctools.js"></script>
+            
+        
+            
+                <script src="../../_static/clipboard.min.js"></script>
+            
+        
+            
+                <script src="../../_static/copybutton.js"></script>
+            
+        
+    
+            <!-- Google Tag Manager -->
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            "gtm.start": new Date().getTime(),
+            event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-T8P2JP");
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Expertrec -->
+<script>
+    var id = "e2077224-9ccf-11e9-a0c9-0242ac130002";
+    var ci_search = document.createElement("script");
+    ci_search.type = "text/javascript";
+    ci_search.async = true;
+    ci_search.src = "https://cse.expertrec.com/api/js/ci_common.js?id=" + id;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(ci_search, s);
+</script>
+<!-- End Expertrec -->
+        
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/b1870adf6a.js" crossorigin="anonymous"></script>
+        <!-- End Font Awesome -->
+    </head>
+
+    <body>
+        
+            <section class="promo-banner">
+    <div class="promo-banner-wrapper">
+        
+        <div class="promo-banner__title">Scylla University Live | Free Virtual Training Event</div>
+        <a class="promo-banner__button button button--reverse" href="#"
+            target="_blank" rel="noopener noreferrer">Learn more</a>
+        <button class="promo-banner__close">
+            <i class="scylla-icon scylla-icon--close"></i>
+        </button>
+    </div>
+</section>
+        
+        <header class="header">
+    <div class="header-logo">
+        <a class="header-logo__img" href="https://scylladb.com/">
+            <img src="../../_static/img/logo-docs.svg" alt="Scylla Documentation Logo" />
+        </a>
+        <span class="header-logo__bar"></span>
+        <a class="header-logo__text" href="https://docs.scylladb.com/">
+            Documentation
+        </a>
+    </div>
+    <div class="header-navigation">
+        <ul class="dropdown menu scylla-dropdown scylla-dropdown--header" data-dropdown-menu>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Server
+                    <i class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--about-us"></i>
+                            Scylla Open Source
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--enterprise"></i>Scylla Enterprise
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://scylla.docs.scylladb.com/stable/alternator/alternator.html">
+                            <i class="scylla-icon scylla-icon--overview"></i>
+                            Scylla Alternator
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Cloud <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://cloud.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--cloud"></i>Scylla Cloud</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">
+                            <i class="scylla-icon scylla-icon--cloud-docs"></i>Scylla Cloud
+                            Docs</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Tools <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://manager.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--manager"></i>Scylla Manager</a>
+                    </li>
+                    <li>
+                        <a href="https://monitoring.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--monitoring"></i>Scylla
+                            Monitoring Stack</a>
+                    </li>
+                    <li>
+                        <a href="https://operator.docs.scylladb.com/">
+                            <i class="scylla-icon scylla-icon--operator"></i>Scylla Operator
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="scylla-dropdown__item">
+                <a href="#" class="scylla-dropdown__title">Drivers <i
+                    class="chevron scylla-icon scylla-icon--triangle-down"></i></a>
+                <ul class="menu scylla-dropdown__content">
+                    <li>
+                        <a href="https://docs.scylladb.com/using-scylla/drivers/cql-drivers/">
+                            <i class="scylla-icon scylla-icon--nsql-guides"></i>CQL Drivers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://docs.scylladb.com/using-scylla/drivers/dynamo-drivers/">
+                            <i class="scylla-icon scylla-icon--overview"></i>DynamoDB Drivers
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="header-button">
+            <a href="https://www.scylladb.com/download/" class="button">Download</a>
+        </div>
+    </div>
+    <div class="header-search-box">
+        <div class="search-box">
+            <ci-search></ci-search>
+        </div>
+    </div>
+    <div class="side-nav-toggle" data-toggle="side-nav">
+    <div class="side-nav-toggle__button">
+        <img src="../../_static/img/menu.svg" alt="Menu" />
+    </div>
+</div>
+</header>
+        <section
+            class="layout  layout--sidebar layout--has-secondary-sidebar ">
+            <div class="content large-order-2">
+                
+                    
+    <div class="admonition caution">
+        <p class="admonition-title">Caution</p>
+        <p>
+            
+                You're viewing documentation for a previous version of Scylla Sphinx Theme.
+            
+            <a href="../../../stable/index.html">Switch to the latest stable version.</a>
+        </p>
+    </div>
+
+                
+                
+                    <div class="pre-content">
+                        <div class="breadcrumbs">
+    <span class="bread__item">
+        <a href="../../index.html"
+            class="bread__highlight">
+            <i class="fas fa-home"></i> Scylla Sphinx Theme
+        </a>
+    </span>
+    
+        <span class="bread__item">
+            <a href="../index.html">
+                Contribute
+            </a>
+        </span>
+    
+        <span class="bread__item">
+            <a href="../contribute-theme.html">
+                Contribute to the Theme
+            </a>
+        </span>
+    
+        <span class="bread__item">
+            <a href="sphinx_scylladb_theme.html">
+                Reference Documentation
+            </a>
+        </span>
+    
+    <span class="bread__item bread__item--last">Custom Extensions</span>
+</div>
+                    </div>
+                
+                <section id="custom-extensions">
+<h1>Custom Extensions<a class="headerlink" href="#custom-extensions" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.hero_box">
+<span id="sphinx-scylladb-theme-extensions-hero-box-module"></span><h2>sphinx_scylladb_theme.extensions.hero_box module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.hero_box" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx directive for HTML Hero Components.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.hero_box.HeroBox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.hero_box.</span></span><span class="sig-name descname"><span class="pre">HeroBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.hero_box.HeroBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.hero_box.HeroBox.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.hero_box.HeroBox.has_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>May the directive have content?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.hero_box.HeroBox.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'button_icon':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'button_text':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'button_url':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'class':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'image':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged_required&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged_required&gt;}</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.hero_box.HeroBox.option_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.hero_box.HeroBox.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.hero_box.HeroBox.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.hero_box.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.hero_box.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.hero_box.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.multiversion">
+<span id="sphinx-scylladb-theme-extensions-multiversion-module"></span><h2>sphinx_scylladb_theme.extensions.multiversion module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.multiversion" title="Permalink to this headline">¶</a></h2>
+<p>Extends sphinx_multiversion:
+- GH Pages support
+- 404 pages support
+- Redirect to latest version</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.multiversion.add_gh_pages_support">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.multiversion.</span></span><span class="sig-name descname"><span class="pre">add_gh_pages_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.multiversion.add_gh_pages_support" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies CNAME and .nojekyll files in the root of the output directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>sphinx.application.Sphinx</em>) – Sphinx Application</p></li>
+<li><p><strong>exception</strong> (<em>sphinx.error.SphinxError</em>) – Sphinx Error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.multiversion.add_notfound_support">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.multiversion.</span></span><span class="sig-name descname"><span class="pre">add_notfound_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.multiversion.add_notfound_support" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a 404.html in the root of the output directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>sphinx.application.Sphinx</em>) – Sphinx Application</p></li>
+<li><p><strong>exception</strong> (<em>sphinx.error.SphinxError</em>) – Sphinx Error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.multiversion.add_notfound_support_dirhtml">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.multiversion.</span></span><span class="sig-name descname"><span class="pre">add_notfound_support_dirhtml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.multiversion.add_notfound_support_dirhtml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a 404.html in the root of the output directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>sphinx.application.Sphinx</em>) – Sphinx Application</p></li>
+<li><p><strong>exception</strong> (<em>sphinx.error.SphinxError</em>) – Sphinx Error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.multiversion.create_redirect_to_latest_version">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.multiversion.</span></span><span class="sig-name descname"><span class="pre">create_redirect_to_latest_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.multiversion.create_redirect_to_latest_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>When multiversion is enabled, creates a redirect to the <code class="docutils literal notranslate"><span class="pre">smv_latest_version</span></code>
+defined in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>sphinx.application.Sphinx</em>) – Sphinx Application</p></li>
+<li><p><strong>exception</strong> (<em>sphinx.error.SphinxError</em>) – Sphinx Error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.multiversion.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.multiversion.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.multiversion.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.navigation">
+<span id="sphinx-scylladb-theme-extensions-navigation-module"></span><h2>sphinx_scylladb_theme.extensions.navigation module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.navigation" title="Permalink to this headline">¶</a></h2>
+<p>Extension for Sphinx that generates a navigation tree with dropdowns
+from Sphinx’s toctree function’s output.</p>
+<p>Adapted from <a class="reference external" href="https://github.com/pradyunsg/furo">https://github.com/pradyunsg/furo</a>
+(Copyright (c) 2020 Pradyun Gedam, MIT License)
+for sphinx-scylladb-theme.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.navigation.get_navigation_tree">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.navigation.</span></span><span class="sig-name descname"><span class="pre">get_navigation_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toctree_html</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collapse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.navigation.get_navigation_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the given navigation tree, with furo-specific elements.
+Adds a checkbox + corresponding label to &lt;li&gt;s that contain a &lt;ul&gt; tag, to enable
+the I-spent-too-much-time-making-this-CSS-only collapsing sidebar tree.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.navigation.side_nav_has_one_item">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.navigation.</span></span><span class="sig-name descname"><span class="pre">side_nav_has_one_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.navigation.side_nav_has_one_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the toc has exactly one list item.</p>
+</dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.panel_box">
+<span id="sphinx-scylladb-theme-extensions-panel-box-module"></span><h2>sphinx_scylladb_theme.extensions.panel_box module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.panel_box" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx directive for HTML Panel Box Components.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.panel_box.PanelBox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.panel_box.</span></span><span class="sig-name descname"><span class="pre">PanelBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.panel_box.PanelBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.panel_box.PanelBox.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.panel_box.PanelBox.has_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>May the directive have content?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.panel_box.PanelBox.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'class':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged&gt;,</span> <span class="pre">'id':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged_required&gt;}</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.panel_box.PanelBox.option_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.panel_box.PanelBox.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.panel_box.PanelBox.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.panel_box.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.panel_box.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.panel_box.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.redirects">
+<span id="sphinx-scylladb-theme-extensions-redirects-module"></span><h2>sphinx_scylladb_theme.extensions.redirects module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.redirects" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx extension for generating JavaScript-driven redirects for moved pages.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.redirects.create_redirects">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.redirects.</span></span><span class="sig-name descname"><span class="pre">create_redirects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.redirects.create_redirects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates redirections for all the paths listed in the
+<code class="docutils literal notranslate"><span class="pre">redirects_file</span></code> defined in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<p>The file should contain a dictionary of redirections formatted as:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">old</span> <span class="n">path</span><span class="p">:</span> <span class="n">new</span> <span class="n">path</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> (<em>sphinx.application.Sphinx</em>) – Sphinx Application</p></li>
+<li><p><strong>exception</strong> (<em>sphinx.error.SphinxError</em>) – Sphinx Error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.redirects.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.redirects.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.redirects.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="sphinx-scylladb-theme-extensions-substitutions-module">
+<h2>sphinx_scylladb_theme.extensions.substitutions module<a class="headerlink" href="#sphinx-scylladb-theme-extensions-substitutions-module" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.topic_box">
+<span id="sphinx-scylladb-theme-extensions-topic-box-module"></span><h2>sphinx_scylladb_theme.extensions.topic_box module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.topic_box" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx directive for HTML Topic Box Components.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.topic_box.TopicBox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.topic_box.</span></span><span class="sig-name descname"><span class="pre">TopicBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.topic_box.TopicBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.topic_box.TopicBox.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.topic_box.TopicBox.has_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>May the directive have content?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.topic_box.TopicBox.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'anchor':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'class':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged&gt;,</span> <span class="pre">'icon':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'icon_color':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'image':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'link':</span> <span class="pre">&lt;function</span> <span class="pre">path&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;function</span> <span class="pre">unchanged_required&gt;}</span></em><a class="headerlink" href="#sphinx_scylladb_theme.extensions.topic_box.TopicBox.option_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.topic_box.TopicBox.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.topic_box.TopicBox.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.topic_box.setup">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.topic_box.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.topic_box.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions.utils">
+<span id="sphinx-scylladb-theme-extensions-utils-module"></span><h2>sphinx_scylladb_theme.extensions.utils module<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.utils.build_redirect_body">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.utils.</span></span><span class="sig-name descname"><span class="pre">build_redirect_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.utils.build_redirect_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the contents of the redirection file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path to redirect to.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>HTML body of the redirection.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.utils.copy">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.utils.</span></span><span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.utils.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies a file or a folder from src to dest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> (<em>str</em>) – The path of the file to copy.</p></li>
+<li><p><strong>dest</strong> (<em>str</em>) – The destination path.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.utils.generate_template">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.utils.</span></span><span class="sig-name descname"><span class="pre">generate_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">vars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.utils.generate_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces variables inside a template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>template</strong> – Text with variables between brackets {}.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx_scylladb_theme.extensions.utils.is_url">
+<span class="sig-prename descclassname"><span class="pre">sphinx_scylladb_theme.extensions.utils.</span></span><span class="sig-name descname"><span class="pre">is_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_scylladb_theme.extensions.utils.is_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a path is an external url or a relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path to evaluate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if path is an external url.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-sphinx_scylladb_theme.extensions">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sphinx_scylladb_theme.extensions" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+                
+                    <div class="post-content"><div class="content-navigation">
+    <div class="navigation navigation--prev">
+        
+            <a class="navigation__link" href="sphinx_scylladb_theme.html">
+                <button class="navigation__button">
+                    <i class="scylla-icon scylla-icon--chevron-left"></i>
+                </button>
+                <div class="navigation__title">
+                    <span class="colored">PREVIOUS</span> <br />Reference Documentation
+                </div>
+            </a>
+        
+    </div>
+    <div class="navigation navigation--next">
+        
+            <a class="navigation__link" href="sphinx_scylladb_theme.lexers.html">
+                <div class="navigation__title">
+                    <span class="colored">NEXT</span> <br />Custom Lexers
+                </div>
+                <button class="navigation__button">
+                    <i class="scylla-icon scylla-icon--chevron-right"></i>
+                </button>
+            </a>
+        
+    </div>
+</div></div>
+                
+            </div>
+            <div class="sidebar-left  large-order-1">
+                
+                    
+                        <div id="side-nav" class="side-nav custom-scroll-bar" data-closable data-toggler=".show">
+    <button class="collapsible-button">
+        <i class="scylla-icon scylla-icon--chevron-left"></i>
+    </button>
+    <div class="side-nav-content">
+        <div class="side-nav__search">
+            <div class="search-box">
+                <ci-search></ci-search>
+            </div>
+        </div>
+        <div class="side-nav__versions">
+    <ul class="dropdown menu scylla-dropdown scylla-dropdown--versions" data-dropdown-menu>
+        <li class="scylla-dropdown__item">
+            <a class="scylla-dropdown__title" href="#">
+                
+                    1.0
+                
+                <i class="chevron scylla-icon scylla-icon--chevron-right"></i>
+            </a>
+            <ul class="menu scylla-dropdown__content">
+                
+                    
+                
+                    
+                        <li>
+                            <a href="../../../stable/index.html">1.2</a>
+                        </li>
+                    
+                
+                    
+                        <li>
+                            <a href="sphinx_scylladb_theme.extensions.html">1.0</a>
+                        </li>
+                    
+                
+                
+            </ul>
+        </li>
+    </ul>
+</div>
+        <div class="side-nav__content">
+            <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label for="toctree-checkbox-1"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/toolchain.html">Toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../configuration/index.html">Configuration</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label for="toctree-checkbox-2"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/template.html">Template Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/multiversion.html">Multiversion Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../github-pages.html">Deployment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label for="toctree-checkbox-3"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/admonitions.html">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/code-blocks.html">Code Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/headings.html">Headings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/hero-box.html">Hero Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/images.html">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/links.html">Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/lists.html">Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/markdown.html">Markdown Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/panel-box.html">Panel Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/substitutions.html">Substitutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tables.html">Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tabs.html">Tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/topic-box.html">Topic Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/versioning.html">Versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Contribute</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label for="toctree-checkbox-4"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../contribute-docs.html">Contribute to the Documentation</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../contribute-theme.html">Contribute to the Sphinx Theme</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label for="toctree-checkbox-5"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul class="current">
+<li class="toctree-l3 current has-children"><a class="reference internal" href="sphinx_scylladb_theme.html">Reference Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label for="toctree-checkbox-6"><i class="scylla-icon scylla-icon--expand"></i></label><div class="break"></div><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Custom Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sphinx_scylladb_theme.lexers.html">Custom Lexers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../markup-guide.html">Markup Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG.html">Changelog</a></li>
+</ul>
+
+        </div>
+    </div>
+</div>
+                    
+                
+            </div>
+            
+                <div class="sidebar-right large-order-3">
+                    <div class="secondary-side-nav custom-scroll-bar">
+    
+    <ul class="contribute">
+        <li class="contribute__item">
+            <a href="https://github.com/scylladb/sphinx-scylladb-theme/issues/new?title=Issue in page Custom Extensions&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://sphinx-theme.scylladb.com/branch-1.0/contribute/api/sphinx_scylladb_theme.extensions%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix"
+                target="_blank">
+                <i class="icon fab fa-github" aria-hidden="true"></i>Create an issue
+            </a>
+        </li>
+        
+            <li class="contribute__item">
+                
+                
+                    
+                        
+                    
+                
+                <a href="https://github.com/scylladb/sphinx-scylladb-theme/edit/branch-1.0/docs/source/contribute/api/sphinx_scylladb_theme.extensions.rst"
+                    target="_blank">
+                    <i class="icon fa fa-edit" aria-hidden="true"></i>Edit this page
+                </a>
+            </li>
+        
+    </ul>
+
+    
+        <div class="secondary-side-nav__content">
+            <p class="topic-title">On this page</p>
+            <ul>
+<li><a class="reference internal" href="#">Custom Extensions</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.hero_box">sphinx_scylladb_theme.extensions.hero_box module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.multiversion">sphinx_scylladb_theme.extensions.multiversion module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.navigation">sphinx_scylladb_theme.extensions.navigation module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.panel_box">sphinx_scylladb_theme.extensions.panel_box module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.redirects">sphinx_scylladb_theme.extensions.redirects module</a></li>
+<li><a class="reference internal" href="#sphinx-scylladb-theme-extensions-substitutions-module">sphinx_scylladb_theme.extensions.substitutions module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.topic_box">sphinx_scylladb_theme.extensions.topic_box module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions.utils">sphinx_scylladb_theme.extensions.utils module</a></li>
+<li><a class="reference internal" href="#module-sphinx_scylladb_theme.extensions">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    
+</div>
+                </div>
+            
+        </section>
+
+        <footer class="footer">
+    <div class="footer-group">
+        <div class="footer-top">
+            <a class="footer-logo" href="https://www.scylladb.com">
+                <img src="../../_static/img/logo-scylla-horizontal-RGB.svg" alt="Logo" />
+            </a>
+            <div class="footer-links">
+                <a class="footer-links__link" href="https://docs.scylladb.com/">Docs</a>
+                <a class="footer-links__link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+                <a class="footer-links__link" href="https://www.scylladb.com/company/">About Us</a>
+            </div>
+            <div class="footer-actions">
+                <a class="footer-actions__link" href="https://groups.google.com/g/scylladb-users" target="_blank">
+                    <span data-tooltip tabindex="1" title="User mailing list" data-position="bottom">
+                        <img src="../../_static/img/icons/icon-mail-list.svg" alt="Mail List Icon" />
+                    </span>
+                </a>
+                <a class="footer-actions__link" href="http://slack.scylladb.com/" target="_blank">
+                    <span data-tooltip tabindex="1" title="User Slack channel" data-position="bottom">
+                        <img src="../../_static/img/icons/icon-slack.svg" alt="Slack Icon" />
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            
+                <div class="footer-bottom__copyright">
+                    
+                        
+                            &#169; 2022, ScyllaDB. All rights reserved.
+                        
+                    
+                </div>
+            
+            
+                <div class="footer-bottom__last-updated">
+                    
+                        Last updated on 26 Apr 2022.
+                    
+                </div>
+            
+            <div class="footer-bottom__version">
+                Powered by
+                <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a> &amp;
+                <a href="https://sphinx-theme.scylladb.com/">ScyllaDB Theme 1.2.1</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP" height="0" width="0"
+                style="display: none; visibility: hidden"></iframe>
+        </noscript>
+    </body>
+
+</html>
