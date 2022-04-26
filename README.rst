@@ -27,7 +27,7 @@ Automatically publish documentation to GitHub Pages.
 For more information about the stack, see `Toolchain <https://sphinx-theme.scylladb.com/stable/getting-started/toolchain.html>`_.
 
 Installation
-------------
+-------------
 
 To add the toolchain to a ScyllaDB project, see the `Getting Started <https://sphinx-theme.scylladb.com/stable/getting-started/index.html>`_ section of our docs.
 
