@@ -601,14 +601,14 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "setuptools"
-version = "67.0.0"
+version = "67.5.0"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "setuptools-67.0.0-py3-none-any.whl", hash = "sha256:9d790961ba6219e9ff7d9557622d2fe136816a264dd01d5997cfc057d804853d"},
-    {file = "setuptools-67.0.0.tar.gz", hash = "sha256:883131c5b6efa70b9101c7ef30b2b7b780a4283d5fc1616383cdf22c83cbefe6"},
+    {file = "setuptools-67.5.0-py3-none-any.whl", hash = "sha256:9f0004c0daa3d41ef4465934a89498da3eef994039f48845d6eb8202aa13b2e9"},
+    {file = "setuptools-67.5.0.tar.gz", hash = "sha256:113ff8d482b826d2f3b99f26adb1fe505e526a94a08e68cdf392d1dff9ce0595"},
 ]
 
 [package.extras]
@@ -1056,4 +1056,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7"
-content-hash = "88ce28f10966a911dddce209491bb2170d3390df3fff1d5a8b56657bb3204b54"
+content-hash = "07bce6a997b4000769a69b2b2b45c58c5130c27b99d9bbe9a6bda90c3b4f1dcc"
