@@ -10,7 +10,7 @@ The documentation toolchain for ScyllaDB projects.
 .. image:: https://github.com/scylladb/sphinx-scylladb-theme/blob/master/docs/source/deployment/images/preview.png
 
 Features
---------
+---------
 
 **Shared Design**
 

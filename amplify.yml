@@ -1,6 +1,7 @@
 version: 1
 applications:
-  - frontend:
+  - appRoot: docs
+    frontend:
       phases:
         build:
           commands:
@@ -12,4 +13,4 @@ applications:
           - '**/*'
       cache:
         paths: []
-    appRoot: docs
+  - appRoot: .
