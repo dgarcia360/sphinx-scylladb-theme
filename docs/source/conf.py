@@ -44,8 +44,12 @@ extensions = [
     "sphinx_sitemap",
     "sphinx_scylladb_theme",
     "sphinx_multiversion",  # optional
+    "sphinx_biel",
     "myst_parser",  # optional
 ]
+
+biel_project = 'a4nxkvro45'
+biel_header_title = 'ScyllaDB chatbot (beta)'
 
 # The suffix(es) of source filenames.
 source_suffix = [".rst", ".md"]
@@ -133,7 +137,7 @@ html_sidebars = {"**": ["side-nav.html"]}
 htmlhelp_basename = "ScyllaDocumentationdoc"
 
 # URL which points to the root of the HTML documentation.
-html_baseurl = "https://sphinx-theme.scylladb.com"
+base_url = os.getenv('BASE_URL', '/')
 
 # Dictionary of values to pass into the template engine’s context for all pages
 html_context = {"html_baseurl": html_baseurl}
