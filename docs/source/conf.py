@@ -137,7 +137,8 @@ html_sidebars = {"**": ["side-nav.html"]}
 htmlhelp_basename = "ScyllaDocumentationdoc"
 
 # URL which points to the root of the HTML documentation.
-base_url = os.getenv('BASE_URL', '/')
+html_baseurl = os.getenv('BASE_URL', '/')
+print(html_baseurl)
 
 # Dictionary of values to pass into the template engine’s context for all pages
 html_context = {"html_baseurl": html_baseurl}
