@@ -119,6 +119,7 @@ def setup(app):
     sphinx_copybutton.setup(app)
     sphinx_substitution_extensions.setup(app)
     tabs.setup(app)
+    app.setup_extension("sphinx_llm.txt")
 
     """Setup custom extensions"""
     alerts.setup(app)

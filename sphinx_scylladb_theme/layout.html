@@ -76,6 +76,8 @@
 
         <link rel="author" href="mailto:info@scylladb.com" />
 
+        <link rel="alternate" type="text/markdown" href="{{ pathto(pagename, 1) }}.md" />
+
         {% block css %}
             {{ css() }}
         {% endblock %}
@@ -111,6 +113,9 @@
                      {% if theme_hide_edit_this_page_button|lower == 'false' and theme_github_repository %}
                          data-view-source-url="https://github.com/{{ theme_github_repository }}/blob/{{ theme_default_branch }}/{{ theme_conf_py_path }}{{ pagename }}{{ page_source_suffix }}"
                      {% endif %}>
+                    <div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+                        For AI agents: a documentation index is available at <a href="{{ pathto('llms.txt', 1) }}">/llms.txt</a>. A Markdown version of this page is at <a href="{{ pathto(pagename, 1) }}.md">/{{ pagename }}.md</a>.
+                    </div>
                     {% if not hide_version_warning %}
                         {% include 'version-warning.html'%}
                     {% endif %}
