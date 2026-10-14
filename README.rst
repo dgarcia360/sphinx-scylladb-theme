@@ -37,6 +37,6 @@ Usage
 For more documentation, see `sphinx-theme.scylladb.com <https://sphinx-theme.scylladb.com>`_.
 
 License
--------
+-------.
 
 Copyright (c) 2020-present ScyllaDB Licensed under the `Apache License 2.0 <LICENSE>`_.
