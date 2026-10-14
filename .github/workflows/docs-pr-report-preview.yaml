@@ -1,0 +1,24 @@
+name: "Docs / Report PR preview"
+
+on:
+  workflow_run:
+    workflows: ["Docs / Build PR"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+
+concurrency:
+  group: docs-report-preview-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  report:
+    if: github.event.workflow_run.event == 'pull_request' && startsWith(github.event.workflow_run.head_branch, 'preview/docs-report-')
+    runs-on: ubuntu-latest
+    steps:
+      # Execute the reviewed action commit, never code from the triggering PR.
+      - name: Update docs build comment
+        uses: dgarcia360/sphinx-scylladb-theme/.github/actions/docs-report@f12b25a431d78e2d0e8fe5bb4c66c0a2efdfa25e
