@@ -4,6 +4,8 @@ const path = require('node:path');
 const MARKER = '<!-- docs-build-report -->';
 const MAX_LOG = 2_000_000;
 const MAX_REPORT = 12_000;
+const MAX_DIAGNOSTICS = 20;
+const DIAGNOSTIC = /^(?:\S.*?:\s*)?(WARNING|ERROR|CRITICAL):|^(error):/i;
 
 function limitLog(text) {
   return text.length > MAX_LOG ? text.slice(0, MAX_LOG) + '\n[Log truncated]\n'
@@ -12,7 +14,8 @@ function limitLog(text) {
 
 function clean(text) {
   return text.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '')
-    .replace(/^\d{4}-\d{2}-\d{2}T\S+\s?/gm, '');
+    .replace(/^\d{4}-\d{2}-\d{2}T\S+\s?/gm, '')
+    .replace(/\/home\/runner\/work\/[^/\s]+\/[^/\s]+\//g, '');
 }
 
 function diagnostics(warnings, log, failed) {
@@ -27,11 +30,26 @@ function diagnostics(warnings, log, failed) {
   const warningText = clean(warnings).trim();
   const known = new Set(warningText.split('\n'));
   const additional = [...new Set(lines.filter(line =>
-    /\b(?:WARNING|ERROR|CRITICAL):|^error:/i.test(line)
+    DIAGNOSTIC.test(line)
   ))].filter(line => !known.has(line));
   const messages = [warningText, ...additional].filter(Boolean).join('\n');
+  if (messages) return messages;
   const tail = failed ? lines.filter(line => line.trim()).slice(-25).join('\n') : '';
-  return clean(messages) + (tail ? '\n\nBuild log tail:\n' + tail : '');
+  return tail ? 'Build log tail:\n' + tail : '';
+}
+
+function splitDiagnostics(text) {
+  const entries = [];
+  const prefix = [];
+  for (const line of text.split('\n')) {
+    const match = line.match(DIAGNOSTIC);
+    if (match) {
+      const severity = (match[1] || match[2]).toUpperCase() === 'WARNING' ? 'warning' : 'error';
+      entries.push({ severity, text: line });
+    } else if (entries.length) entries[entries.length - 1].text += '\n' + line;
+    else prefix.push(line);
+  }
+  return { entries, prefix: prefix.join('\n').trim() };
 }
 
 function escape(text) {
@@ -41,14 +59,26 @@ function escape(text) {
 
 function renderReport(run, text) {
   const status = { success: 'passed', failure: 'failed' }[run.conclusion] || run.conclusion;
-  const shortened = text.length > MAX_REPORT;
-  const displayed = escape(text.slice(0, MAX_REPORT));
-  const output = [MARKER, `### Docs build ${status}`, '',
-    `Commit: \`${run.head_sha.slice(0, 7)}\`. [Build log](${run.html_url}).`, ''];
-  if (text.trim()) output.push('<pre>' + displayed + '</pre>', '');
-  else if (run.conclusion !== 'success') output.push(
-    'No Sphinx diagnostics were captured. Check the failed step in the build log.', ''
-  );
+  const displayed = clean(text).slice(0, MAX_REPORT);
+  const { entries, prefix } = splitDiagnostics(displayed);
+  const shortened = text.length > MAX_REPORT || entries.length > MAX_DIAGNOSTICS;
+  const output = [MARKER, `### Docs / Build PR ${status}`, ''];
+  if (run.conclusion === 'success') output.push('The documentation check passed.', '');
+  else if (entries.length) {
+    const counts = ['error', 'warning'].map(severity => {
+      const count = entries.filter(entry => entry.severity === severity).length;
+      return count ? `**${count} ${severity}${count === 1 ? '' : 's'}**` : '';
+    }).filter(Boolean).join(' and ');
+    output.push(`The documentation check reported ${counts}. Warnings also fail this check.`, '');
+  } else output.push('No documentation diagnostics were captured. Check the failed step in the build log.', '');
+  output.push(`Commit: \`${run.head_sha.slice(0, 7)}\`. [Build log](${run.html_url}).`, '');
+  if (entries.length) {
+    if (prefix) output.push('<p>' + escape(prefix) + '</p>', '');
+    output.push('<ol>', ...entries.slice(0, MAX_DIAGNOSTICS).map(entry =>
+      '<li><strong>' + (entry.severity === 'warning' ? 'Warning' : 'Error')
+      + '</strong><pre>' + escape(entry.text.trim()) + '</pre></li>'
+    ), '</ol>', '');
+  } else if (displayed.trim()) output.push('<pre>' + escape(displayed) + '</pre>', '');
   if (shortened) output.push('Report truncated. See the build log for all diagnostics.', '');
   return output.join('\n');
 }
@@ -99,7 +129,7 @@ async function readBuildDiagnostics({ github, repository, run, core }) {
 async function reportPullRequest({ github, context, core }) {
   const run = context.payload.workflow_run;
   const repository = context.repo;
-  if (run.event !== 'pull_request') return;
+  if (run.event !== 'pull_request' || run.path !== '.github/workflows/docs-pr.yaml') return;
   // Resolve the PR from GitHub metadata, never from PR-controlled files or logs.
   let candidates = run.pull_requests || [];
   if (!candidates.length && run.head_repository) {
