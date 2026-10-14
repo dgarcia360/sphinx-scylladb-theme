@@ -31,7 +31,7 @@ The toolchain provides the following workflows under the directory ``.github/wor
     * - ``docs-pr.yaml``
       - Builds the docs for pull requests and shows warnings and errors in the Actions summary and at the end of the build log.
     * - ``docs-pr-report.yaml``
-      - Reports warnings and errors in a pull request comment and updates it after each build.
+      - Reports warnings and errors in a pull request comment. Removes the comment when the build passes.
 
 .. caution:: If you modify these workflows in your repository, you will need to maintain the changes. So instead, we recommend you to open an issue in the `sphinx-scylladb-theme repository <https://github.com/scylladb/sphinx-scylladb-theme>`_ so that all projects can benefit from the improvements you made.
 
@@ -108,7 +108,7 @@ Docs builds can fail because of documentation errors or warnings.
 For pull requests, the **Docs / Build PR** comment lists warnings and errors and links to the full build log.
 You can also find these messages in the Actions summary and at the end of the build log.
 
-Once the build passes, the existing comment is updated. Successful builds do not create new comments.
+Once the build passes, the comment is removed. Successful builds do not create comments.
 
 To view the full build output:
 
