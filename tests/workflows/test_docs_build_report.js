@@ -37,6 +37,7 @@ function fixture({ previous, success = false, newer = false, attempt = false,
         listComments() {},
         updateComment: async args => calls.push({ update: args }),
         createComment: async args => calls.push({ create: args }),
+        deleteComment: async args => calls.push({ delete: args }),
       },
     },
     paginate: async (method, args) => {
@@ -79,18 +80,26 @@ test('the log tail is a fallback for failures without diagnostics', () => {
   assert.equal(diagnostics('', log, false), '');
 });
 
-test('each diagnostic has its own labeled code block with multiline context', () => {
+test('diagnostics are grouped by severity with one code block per issue', () => {
   const text = 'Failed step: Build docs\n\n'
     + '/home/runner/work/docs/docs/docs/source/page.rst:10: ERROR: Unknown directive.\n'
     + '\n.. invalid-directive::\n\n   offending source\n'
-    + '/home/runner/work/docs/docs/docs/source/page.rst:20: WARNING: missing reference';
+    + '/home/runner/work/docs/docs/docs/source/page.rst:20: WARNING: missing reference\n'
+    + 'docs/source/page.rst:30: ERROR: Second error.\n\n   second source\n'
+    + 'docs/source/page.rst:40: WARNING: second warning\n'
+    + 'docs/source/page.rst:50: WARNING: third warning';
   const body = renderReport(run, text);
   assert.match(body, /Docs \/ Build PR failed/);
-  assert.match(body, /\*\*1 error\*\* and \*\*1 warning\*\*/);
-  assert.equal(body.match(/<pre>/g).length, 2);
-  assert.match(body, /<strong>Error<\/strong><pre>docs\/source\/page.rst:10: ERROR:/);
-  assert.match(body, /offending source<\/pre><\/li>/);
-  assert.match(body, /<strong>Warning<\/strong><pre>docs\/source\/page.rst:20: WARNING:/);
+  assert.match(body, /\*\*2 errors\*\* and \*\*3 warnings\*\*/);
+  assert.equal(body.match(/<pre>/g).length, 5);
+  const [errors, warnings] = body.split('#### Warnings');
+  assert.match(errors, /#### Errors/);
+  assert.equal(errors.match(/<pre>/g).length, 2);
+  assert.equal(warnings.match(/<pre>/g).length, 3);
+  assert.match(errors, /<pre>docs\/source\/page.rst:10: ERROR:/);
+  assert.match(errors, /offending source<\/pre>/);
+  assert.match(warnings, /<pre>docs\/source\/page.rst:20: WARNING:/);
+  assert.doesNotMatch(body, /<ol>|<li>/);
   assert.doesNotMatch(body, /\/home\/runner\/work\//);
 });
 
@@ -151,11 +160,11 @@ test('subsequent failures update the existing report', async () => {
   assert.equal(data.calls[0].update.comment_id, 99);
 });
 
-test('successful builds clear an existing failure report without creating new comments', async () => {
+test('successful builds delete the existing report and never post a success comment', async () => {
   const data = fixture({ previous: true, success: true });
   await reportPullRequest(data);
-  assert.match(data.calls[0].update.body, /Docs \/ Build PR passed/);
-  assert.doesNotMatch(data.calls[0].update.body, /WARNING/);
+  assert.equal(data.calls.length, 1);
+  assert.equal(data.calls[0].delete.comment_id, 99);
   const clean = fixture({ success: true });
   await reportPullRequest(clean);
   assert.equal(clean.calls.length, 0);
