@@ -8,7 +8,7 @@ permissions:
 on:
   pull_request:
     branches:
-      - master
+      - preview/docs-report-base
     paths:
       - "docs/**"
       - ".github/workflows/docs-pr.yaml"
@@ -43,6 +43,6 @@ jobs:
 
       - name: Summarize docs diagnostics
         if: always()
-        uses: scylladb/sphinx-scylladb-theme/.github/actions/docs-report@1.10.0
+        uses: dgarcia360/sphinx-scylladb-theme/.github/actions/docs-report@f12b25a431d78e2d0e8fe5bb4c66c0a2efdfa25e
         with:
           build-outcome: ${{ steps.docs-build.outcome }}

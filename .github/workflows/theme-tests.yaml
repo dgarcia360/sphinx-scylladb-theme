@@ -3,7 +3,7 @@ name: "Theme / Unit tests"
 on:
   pull_request:
     branches:
-      - master
+      - preview/docs-report-base
     paths:
       - "sphinx_scylladb_theme/**"
       - ".github/actions/**"
@@ -12,7 +12,7 @@ on:
       - "tests/**"
   push:
     branches:
-      - master
+      - preview/docs-report-base
     paths:
       - "sphinx_scylladb_theme/**"
       - ".github/actions/**"
