@@ -4,6 +4,7 @@ const { diagnostics, renderReport, reportPullRequest } = require('../../.github/
 
 const run = {
   id: 123, run_attempt: 1, workflow_id: 9, event: 'pull_request',
+  path: '.github/workflows/docs-pr.yaml',
   conclusion: 'failure', head_sha: 'abcdef123456', head_branch: 'docs-change',
   html_url: 'https://github.com/example/docs/actions/runs/123',
   head_repository: { id: 7, owner: { login: 'contributor' } },
@@ -61,12 +62,43 @@ test('reports preserve the original warning wording and severity', () => {
   assert.ok(body.includes('<pre>' + text + '</pre>'));
 });
 
-test('diagnostics strip timestamps and colors, deduplicate warnings, and retain the failure tail', () => {
+test('diagnostics strip timestamps and colors and omit the log tail when diagnostics exist', () => {
   const line = '2026-10-09T10:00:00.000Z \x1b[31mdocs/page.md: WARNING: missing reference\x1b[0m';
   const text = diagnostics('', [line, line, 'error: dependency install failed'].join('\n'), true);
   assert.equal(text.split('Build log tail:')[0].match(/WARNING:/g).length, 1);
   assert.doesNotMatch(text, /\x1b|2026-10-09T/);
   assert.match(text, /dependency install failed/);
+  assert.doesNotMatch(text, /Build log tail/);
+});
+
+test('the log tail is a fallback for failures without diagnostics', () => {
+  const log = [...Array(30).fill('progress'), 'process unexpectedly stopped'].join('\n');
+  const text = diagnostics('', log, true);
+  assert.match(text, /^Build log tail:/);
+  assert.match(text, /process unexpectedly stopped/);
+  assert.equal(diagnostics('', log, false), '');
+});
+
+test('each diagnostic has its own labeled code block with multiline context', () => {
+  const text = 'Failed step: Build docs\n\n'
+    + '/home/runner/work/docs/docs/docs/source/page.rst:10: ERROR: Unknown directive.\n'
+    + '\n.. invalid-directive::\n\n   offending source\n'
+    + '/home/runner/work/docs/docs/docs/source/page.rst:20: WARNING: missing reference';
+  const body = renderReport(run, text);
+  assert.match(body, /Docs \/ Build PR failed/);
+  assert.match(body, /\*\*1 error\*\* and \*\*1 warning\*\*/);
+  assert.equal(body.match(/<pre>/g).length, 2);
+  assert.match(body, /<strong>Error<\/strong><pre>docs\/source\/page.rst:10: ERROR:/);
+  assert.match(body, /offending source<\/pre><\/li>/);
+  assert.match(body, /<strong>Warning<\/strong><pre>docs\/source\/page.rst:20: WARNING:/);
+  assert.doesNotMatch(body, /\/home\/runner\/work\//);
+});
+
+test('many diagnostic blocks still fit in a GitHub comment', () => {
+  const body = renderReport(run, Array(1000).fill('WARNING: &'.repeat(3)).join('\n'));
+  assert.ok(body.length < 65_536);
+  assert.equal(body.match(/<pre>/g).length, 20);
+  assert.match(body, /Report truncated/);
 });
 
 test('warnings file retains multiline diagnostic context', () => {
@@ -122,7 +154,7 @@ test('subsequent failures update the existing report', async () => {
 test('successful builds clear an existing failure report without creating new comments', async () => {
   const data = fixture({ previous: true, success: true });
   await reportPullRequest(data);
-  assert.match(data.calls[0].update.body, /Docs build passed/);
+  assert.match(data.calls[0].update.body, /Docs \/ Build PR passed/);
   assert.doesNotMatch(data.calls[0].update.body, /WARNING/);
   const clean = fixture({ success: true });
   await reportPullRequest(clean);
@@ -136,6 +168,13 @@ for (const option of ['stale', 'closed', 'newer', 'attempt']) {
     assert.equal(data.calls.length, 0);
   });
 }
+
+test('another workflow cannot post a report by copying the docs workflow name', async () => {
+  const data = fixture();
+  data.context.payload.workflow_run.path = '.github/workflows/other.yaml';
+  await reportPullRequest(data);
+  assert.equal(data.calls.length, 0);
+});
 
 test('unavailable logs still produce a report linking to the failed build', async () => {
   const data = fixture({ unavailable: true });

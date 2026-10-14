@@ -105,7 +105,7 @@ Docs builds can fail because of documentation errors or warnings.
 
 ``make test`` uses Sphinx's ``-W`` option, which treats warnings as build failures.
 
-For pull requests, the **Docs build** comment lists warnings and errors and links to the full build log.
+For pull requests, the **Docs / Build PR** comment lists warnings and errors and links to the full build log.
 You can also find these messages in the Actions summary and at the end of the build log.
 
 Once the build passes, the existing comment is updated. Successful builds do not create new comments.

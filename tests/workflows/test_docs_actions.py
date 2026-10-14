@@ -66,6 +66,7 @@ const core = {
 };
 const run = {
   id: 123, run_attempt: 1, workflow_id: 9, event: 'pull_request',
+  path: '.github/workflows/docs-pr.yaml',
   conclusion: 'failure', head_sha: 'abcdef123456', pull_requests: [{ number: 17 }],
   html_url: 'https://github.com/example/docs/actions/runs/123',
 };
@@ -107,7 +108,7 @@ new AsyncFunction('require', 'core', 'context', 'github', process.argv[1])(requi
         check=True,
     )
     body = json.loads(result.stdout)
-    assert "Docs build failed" in body
+    assert "Docs / Build PR failed" in body
     assert "WARNING: missing reference" in body
     assert "ERROR: build failed" in body
     assert "https://github.com/example/docs/actions/runs/123" in body
