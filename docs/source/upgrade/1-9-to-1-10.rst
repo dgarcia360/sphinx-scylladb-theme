@@ -25,3 +25,12 @@ These workflows are available with the ``1.10.0`` release. Updating the theme
 package alone does not update your project's workflows.
 
 For details, see :ref:`docs-build-reports`.
+
+Report preview fixtures
+-----------------------
+
+This missing page should produce a warning: :doc:`preview-missing-page`.
+
+.. preview-invalid-directive::
+
+   This unknown directive should produce a documentation error.
