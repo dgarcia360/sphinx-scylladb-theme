@@ -74,10 +74,14 @@ function renderReport(run, text) {
   output.push(`Commit: \`${run.head_sha.slice(0, 7)}\`. [Build log](${run.html_url}).`, '');
   if (entries.length) {
     if (prefix) output.push('<p>' + escape(prefix) + '</p>', '');
-    output.push('<ol>', ...entries.slice(0, MAX_DIAGNOSTICS).map(entry =>
-      '<li><strong>' + (entry.severity === 'warning' ? 'Warning' : 'Error')
-      + '</strong><pre>' + escape(entry.text.trim()) + '</pre></li>'
-    ), '</ol>', '');
+    let remaining = MAX_DIAGNOSTICS;
+    for (const severity of ['error', 'warning']) {
+      const group = entries.filter(entry => entry.severity === severity).slice(0, remaining);
+      if (!group.length) continue;
+      output.push(severity === 'error' ? '#### Errors' : '#### Warnings', '');
+      for (const entry of group) output.push('<pre>' + escape(entry.text.trim()) + '</pre>', '');
+      remaining -= group.length;
+    }
   } else if (displayed.trim()) output.push('<pre>' + escape(displayed) + '</pre>', '');
   if (shortened) output.push('Report truncated. See the build log for all diagnostics.', '');
   return output.join('\n');
@@ -158,9 +162,13 @@ async function reportPullRequest({ github, context, core }) {
     const previous = comments.find(comment =>
       comment.user?.login === 'github-actions[bot]' && (comment.body || '').startsWith(MARKER)
     );
-    if (run.conclusion === 'success' && !previous) continue;
-    const text = run.conclusion === 'success' ? ''
-      : await readBuildDiagnostics({ github, repository, run, core });
+    if (run.conclusion === 'success') {
+      if (previous) await github.rest.issues.deleteComment({
+        ...repository, comment_id: previous.id,
+      });
+      continue;
+    }
+    const text = await readBuildDiagnostics({ github, repository, run, core });
     const body = renderReport(run, text);
     if (previous) await github.rest.issues.updateComment({
       ...repository, comment_id: previous.id, body,

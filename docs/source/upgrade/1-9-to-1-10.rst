@@ -3,7 +3,7 @@ Upgrading from 1.9 to 1.10
 
 Version 1.10 adds documentation build reports to pull requests. Failed builds
 show warnings and errors in a **Docs / Build PR** comment, the Actions summary,
-and the build log. When the build passes, the existing comment is updated.
+and the build log. When the build passes, the comment is removed.
 
 Update GitHub Actions workflows
 -------------------------------
@@ -29,8 +29,14 @@ For details, see :ref:`docs-build-reports`.
 Report preview fixtures
 -----------------------
 
-This missing page should produce a warning: :doc:`preview-missing-page`.
+Missing page: :doc:`preview-missing-page`.
+Another missing page: :doc:`preview-another-missing-page`.
+Missing label: :ref:`preview-missing-label`.
 
 .. preview-invalid-directive::
 
-   This unknown directive should produce a documentation error.
+   First documentation error with its source context.
+
+.. preview-second-invalid-directive::
+
+   Second documentation error with its source context.
