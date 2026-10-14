@@ -25,3 +25,5 @@ These workflows are available with the ``1.10.0`` release. Updating the theme
 package alone does not update your project's workflows.
 
 For details, see :ref:`docs-build-reports`.
+
+Preview warning: :doc:`preview-missing-page`.
